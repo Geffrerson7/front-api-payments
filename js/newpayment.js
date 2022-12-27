@@ -1,10 +1,13 @@
 import validate from "./validation.js";
+import { updateTokenInterval, BASE_URL, logoutUser } from "./auth.js";
 
+const containeruser = document.querySelector("#user-email");
 const formTodo = document.querySelector('#form');
 const expirationDate = document.querySelector('#expirationDate');
 const service = document.querySelector('#service');
 const amount = document.querySelector('#amount')
 
+updateTokenInterval();
 formTodo.addEventListener('submit', (event) => {
     event.preventDefault();
     formValidation();
@@ -25,7 +28,7 @@ async function acceptData(){
         amount: amount.value,
      
     }
-    await fetch("http://127.0.0.1:8000/api/v2/payments/", {
+    await fetch(BASE_URL+"api/v2/payments/", {
         method: "POST",
         mode: "cors",
         headers: {
@@ -55,3 +58,9 @@ async function acceptData(){
         }
     })
 }
+
+let user = JSON.parse(localStorage.getItem("user"));
+containeruser.innerHTML=`<p>${user.email}</p>`
+
+const logoutButton = document.getElementById("logout");
+logoutButton.addEventListener("click", logoutUser);

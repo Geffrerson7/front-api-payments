@@ -27,7 +27,13 @@ let loginUser = async (event) => {
             let { tokens, data: user } = data
             localStorage.setItem("authTokens", JSON.stringify(tokens));
             localStorage.setItem("user", JSON.stringify(user));
-            window.location.replace("../templates/index.html");
+            let usertype = JSON.parse(localStorage.getItem("user"));
+            if (usertype.is_superuser){
+                window.location.replace("../templates/index-admin.html");
+            } else {
+                window.location.replace("../templates/index.html");
+            }
+            
             
         } else {
             Swal.fire({
