@@ -42,3 +42,4 @@ let loginUser = async (event) => {
 formLogin.addEventListener("submit", loginUser);
 
 // window.location.replace("./index.html");
+

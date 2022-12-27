@@ -1,4 +1,4 @@
-import { updateTokenInterval, BASE_URL } from "./auth.js";
+import { updateTokenInterval, BASE_URL, logoutUser } from "./auth.js";
 
 const containeruser = document.querySelector("#user-email");
 const container = document.querySelector("#row-p");
@@ -69,16 +69,18 @@ function renderPaymentExpired(payment) {
   `;
 }
 
-function getEmailUser() {
-  let user = JSON.parse(localStorage.getItem("user"));
-  containeruser.innerHTML=`<p>${user.email}</p>`
-}
 
+let user = JSON.parse(localStorage.getItem("user"));
+containeruser.innerHTML=`<p>${user.email}</p>`
 
+const logoutButton = document.getElementById("logout");
+logoutButton.addEventListener("click", logoutUser);
+
+updateTokenInterval();
 getPayments();
 getPaymentsExpired();
-getEmailUser();
-updateTokenInterval();
+
+
 
 
 

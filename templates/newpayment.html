@@ -11,36 +11,55 @@
 </head>
 
 <body>
-    <div class="container mt-4">
-        <h1>Add Payment</h1>
+    
+    <div class="container">
+        <h5 class="display-6"><strong>Crear nuevo pago</strong></h5>
+        <hr>
         <form method="post" id="form">
-            <div class="form-group">
-                <label for="expirationDate">Expiration date:</label>
-                <input type="date" name="bday" id="expirationDate"/>
-            </div>
-            <div class="form-group">
-                <label for="service">Service</label>
-                <select class="form-select" id="service">
-                    
-                    <option>Netflix</option>
-                    <option>Star +</option>
-                    <option>Amazon Video</option>
-                    <option>Paramount +</option>
-                </select>
-                
-            </div>
-            <div class="input-group mb-3">
-                
-                <span class="input-group-text">s/.</span>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="amount">
-
-            </div>
-            <div class="mt-2">
-                <button onclick="submit" class="btn btn-primary">Crear</button>
-                <a href="./index.html" class="btn btn-danger">Cancelar</a>
-            </div>
+            <section class="section dashboard">
+                <div class="card">
+                    <h5 class="card-header">Todos los campos ron requeridos</h5>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="mb-3 col-sm-6">
+                                    <label for="expirationDate" class="form-label">Expiration date</label>
+                                    <input type="date" class="form-control" id="expirationDate">
+                                </div>
+                                <div class="mb-3 col-sm-6">
+                                    <label for="service" class="form-label">Service</label>
+                                    <select id="service" class="form-select"
+                                        aria-label="Default select example">
+                                        <option>Netflix</option>
+                                        <option>Star +</option>
+                                        <option>Amazon Video</option>
+                                        <option>Paramount +</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col-sm-6">
+                                    <label for="amount" class="form-label">Amount</label>
+                                    <input type="text" class="form-control" id="amount">
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <button onclick="submit" class="btn btn-primary">Crear</button>
+                                <a href="./index.html" class="btn btn-danger">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </form>
+        
     </div>
+
+
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
