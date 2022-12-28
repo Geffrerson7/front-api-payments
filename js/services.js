@@ -1,12 +1,12 @@
-import { updateTokenInterval,logoutUser,BASE_URL} from "./auth.js";
+import { updateTokenInterval, logoutUser, BASE_URL } from "./auth.js";
 import validate from "./validation.js";
 
 const containeruser = document.querySelector("#user-email");
 
 const formNewService = document.querySelector('#form-create');
-const newname =document.querySelector('#new-name');
-const newprefixe =document.querySelector('#new-prefixe');
-const newURLlogo =document.querySelector('#new-URLlogo');
+const newname = document.querySelector('#new-name');
+const newprefixe = document.querySelector('#new-prefixe');
+const newURLlogo = document.querySelector('#new-URLlogo');
 
 const serviceOption = document.querySelector("#service");
 const formUpdate = document.querySelector('#form-update');
@@ -25,54 +25,50 @@ formNewService.addEventListener('submit', (event) => {
 let formValidation = () => {
     let validated = validate([newname.value, newprefixe.value, newURLlogo.value]);
     if (validated) {
-    acceptData();
+        acceptData();
     }
-  };
+};
 
-async function acceptData(){
+async function acceptData() {
     let authTokens = JSON.parse(localStorage.getItem("authTokens"));
     const data = {
         name: newname.value,
         prefixe: newprefixe.value,
         logo: newURLlogo.value,
-     
+
     }
-    await fetch(BASE_URL+"api/v2/services-crud/", {
+    await fetch(BASE_URL + "api/v2/services-crud/", {
         method: "POST",
         mode: "cors",
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': 'Bearer ' + authTokens?.access
-          },
+        },
         body: JSON.stringify(data)
-    }).then((response)=>{
-        if (response.ok){
+    }).then((response) => {
+        if (response.ok) {
             Swal.fire(
                 '¡Creado!',
                 'Los datos se guardaron correctamente',
                 'success'
-              ).then((result) => {
+            ).then((result) => {
                 if (result.isConfirmed) {
                     window.location.replace("./index-admin.html");
                 }
-            }) 
+            })
         }
-        else{
+        else {
             Swal.fire({
-                icon:"error",
+                icon: "error",
                 title: 'Oops...',
                 text: "¡Ocurrió un error!"
-            })           
+            })
         }
     })
 }
 
-let user = JSON.parse(localStorage.getItem("user"));
-containeruser.innerHTML=`<p>${user.email}</p>`
 
-const logoutButton = document.getElementById("logout");
-logoutButton.addEventListener("click", logoutUser);
 
 formUpdate.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -80,13 +76,13 @@ formUpdate.addEventListener('submit', (event) => {
 });
 
 let formUpdateValidation = () => {
-    let validated = validate([service.value,name.value, prefixe.value, URLlogo.value]);
+    let validated = validate([service.value, name.value, prefixe.value, URLlogo.value]);
     if (validated) {
-    updateData();
+        updateData();
     }
-  };
+};
 
-async function updateData(){
+async function updateData() {
     let authTokens = JSON.parse(localStorage.getItem("authTokens"));
     const data = {
         id: serviceOption.value,
@@ -101,27 +97,53 @@ async function updateData(){
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Authorization': 'Bearer ' + authTokens?.access
-          },
+        },
         body: JSON.stringify(data)
-    }).then((response)=>{
-        if (response.ok){
+    }).then((response) => {
+        if (response.ok) {
             Swal.fire(
                 '¡Actualizado!',
                 'Los datos se actualizaron correctamente',
                 'success'
-              ).then((result) => {
+            ).then((result) => {
                 if (result.isConfirmed) {
                     window.location.replace("./services.html");
                 }
-            }) 
+            })
         }
-        else{
+        else {
             Swal.fire({
-                icon:"error",
+                icon: "error",
                 title: 'Oops...',
                 text: "¡Ocurrió un error!"
-            })           
+            })
         }
     })
 }
 
+async function getServices() {
+    let authTokens = JSON.parse(localStorage.getItem("authTokens"));
+
+    const response = await fetch(BASE_URL + "api/v2/services-crud/", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + authTokens?.access
+        }
+    });
+    const data = await response.json();
+    data.results.forEach((service) => {
+
+        serviceOption.innerHTML += `<option value="${service.id}">${service.name}</option>`
+
+    });
+}
+
+getServices();
+
+let user = JSON.parse(localStorage.getItem("user"));
+containeruser.innerHTML = `<p>${user.email}</p>`
+
+const logoutButton = document.getElementById("logout");
+logoutButton.addEventListener("click", logoutUser);

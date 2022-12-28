@@ -6,6 +6,7 @@ const formTodo = document.querySelector('#form');
 const expirationDate = document.querySelector('#expirationDate');
 const service = document.querySelector('#service');
 const amount = document.querySelector('#amount')
+const serviceOption = document.querySelector(".form-select");
 
 updateTokenInterval();
 formTodo.addEventListener('submit', (event) => {
@@ -58,6 +59,27 @@ async function acceptData(){
         }
     })
 }
+
+async function getServices() {
+    let authTokens = JSON.parse(localStorage.getItem("authTokens"));
+
+    const response = await fetch(BASE_URL + "api/v2/services/", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + authTokens?.access
+        }
+    });
+    const data = await response.json();
+    data.results.forEach((service) => {
+
+        serviceOption.innerHTML += `<option>${service.name}</option>`
+
+    });
+}
+
+getServices();
 
 let user = JSON.parse(localStorage.getItem("user"));
 containeruser.innerHTML=`<p>${user.email}</p>`
