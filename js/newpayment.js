@@ -1,5 +1,5 @@
 import validate from "./validation.js";
-import { updateTokenInterval, BASE_URL, logoutUser } from "./auth.js";
+import { updateTokenInterval, BASE_URL, logoutUser, validateAuth } from "./auth.js";
 
 const containeruser = document.querySelector("#user-email");
 const formTodo = document.querySelector('#form');
@@ -7,8 +7,31 @@ const expirationDate = document.querySelector('#expirationDate');
 const service = document.querySelector('#service');
 const amount = document.querySelector('#amount')
 const serviceOption = document.querySelector(".form-select");
+const containerservice = document.querySelector("#section-service")
+let user = JSON.parse(localStorage.getItem("user"));
+let DIR_PAYMENT="";
+let DIR_SERVICE="";
 
-updateTokenInterval();
+validateAuth("../templates/newpayment.html")
+if (user.is_superuser){
+    DIR_PAYMENT='api/v2/payments-crud/';
+    DIR_SERVICE="api/v2/services-crud/";
+    containerservice.innerHTML = `<a href="./services.html" class="nav-link text-secondary">
+                                  <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                      <use xlink:href="#grid" />
+                                  </svg>
+                                Servicios
+                                </a>`;   
+} else {
+    DIR_PAYMENT='api/v2/payments/';
+    DIR_SERVICE= "api/v2/services/";  
+}
+
+containeruser.innerHTML=`<p>${user.email}</p>`
+
+const logoutButton = document.getElementById("logout");
+logoutButton.addEventListener("click", logoutUser);
+
 formTodo.addEventListener('submit', (event) => {
     event.preventDefault();
     formValidation();
@@ -29,7 +52,7 @@ async function acceptData(){
         amount: amount.value,
      
     }
-    await fetch(BASE_URL+"api/v2/payments/", {
+    await fetch(BASE_URL+DIR_PAYMENT, {
         method: "POST",
         mode: "cors",
         headers: {
@@ -63,7 +86,7 @@ async function acceptData(){
 async function getServices() {
     let authTokens = JSON.parse(localStorage.getItem("authTokens"));
 
-    const response = await fetch(BASE_URL + "api/v2/services/", {
+    const response = await fetch(BASE_URL + DIR_SERVICE, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -79,10 +102,7 @@ async function getServices() {
     });
 }
 
+updateTokenInterval();
 getServices();
 
-let user = JSON.parse(localStorage.getItem("user"));
-containeruser.innerHTML=`<p>${user.email}</p>`
 
-const logoutButton = document.getElementById("logout");
-logoutButton.addEventListener("click", logoutUser);
