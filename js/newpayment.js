@@ -46,7 +46,7 @@ async function acceptData(){
                 'success'
               ).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.replace("./index.html");
+                    window.location.replace("../templates/index.html");
                 }
             }) 
         }

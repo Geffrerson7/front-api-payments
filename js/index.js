@@ -1,9 +1,10 @@
-import { updateTokenInterval, BASE_URL, logoutUser } from "./auth.js";
+import { updateTokenInterval, BASE_URL, logoutUser, validateAuth } from "./auth.js";
 
 const containeruser = document.querySelector("#user-email");
 const container = document.querySelector("#row-p");
 const containerex = document.querySelector("#row-ex");
 
+validateAuth("../templates/index.html")
 async function getPayments() {
   let authTokens = JSON.parse(localStorage.getItem("authTokens"));
   const response = await fetch(BASE_URL + "api/v2/payments/", {

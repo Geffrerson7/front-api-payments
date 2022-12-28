@@ -1,8 +1,6 @@
-import { validateToken,BASE_URL } from "./auth.js";
+import { BASE_URL } from "./auth.js";
 import validate from "./validation.js";
 
-
-validateToken("../templates/index.html");
 const formLogin = document.getElementById("form");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -47,5 +45,5 @@ let loginUser = async (event) => {
 
 formLogin.addEventListener("submit", loginUser);
 
-// window.location.replace("./index.html");
+
 
