@@ -2,17 +2,25 @@ import { updateTokenInterval,logoutUser,BASE_URL} from "./auth.js";
 import validate from "./validation.js";
 
 const containeruser = document.querySelector("#user-email");
+
 const formNewService = document.querySelector('#form-create');
 const newname =document.querySelector('#new-name');
 const newprefixe =document.querySelector('#new-prefixe');
 const newURLlogo =document.querySelector('#new-URLlogo');
-const service = document.querySelector("#service");
+
+const serviceOption = document.querySelector("#service");
+const formUpdate = document.querySelector('#form-update');
+const name = document.querySelector("#name")
+const prefixe = document.querySelector("#prefixe")
+const URLlogo = document.querySelector("#URLlogo")
 
 updateTokenInterval();
 formNewService.addEventListener('submit', (event) => {
     event.preventDefault();
     formValidation();
 });
+
+
 
 let formValidation = () => {
     let validated = validate([newname.value, newprefixe.value, newURLlogo.value]);
@@ -65,3 +73,55 @@ containeruser.innerHTML=`<p>${user.email}</p>`
 
 const logoutButton = document.getElementById("logout");
 logoutButton.addEventListener("click", logoutUser);
+
+formUpdate.addEventListener('submit', (event) => {
+    event.preventDefault();
+    formUpdateValidation();
+});
+
+let formUpdateValidation = () => {
+    let validated = validate([service.value,name.value, prefixe.value, URLlogo.value]);
+    if (validated) {
+    updateData();
+    }
+  };
+
+async function updateData(){
+    let authTokens = JSON.parse(localStorage.getItem("authTokens"));
+    const data = {
+        id: serviceOption.value,
+        name: name.value,
+        prefixe: prefixe.value,
+        logo: URLlogo.value
+    }
+    await fetch(`http://127.0.0.1:8000/api/v2/services-crud/${data.id}/`, {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + authTokens?.access
+          },
+        body: JSON.stringify(data)
+    }).then((response)=>{
+        if (response.ok){
+            Swal.fire(
+                '¡Actualizado!',
+                'Los datos se actualizaron correctamente',
+                'success'
+              ).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.replace("./services.html");
+                }
+            }) 
+        }
+        else{
+            Swal.fire({
+                icon:"error",
+                title: 'Oops...',
+                text: "¡Ocurrió un error!"
+            })           
+        }
+    })
+}
+

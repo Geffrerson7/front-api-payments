@@ -49,7 +49,9 @@ async function getPaymentsExpired() {
     const data = await response.json();
     data.results.forEach((payment) => {
 
+    if (user.email == payment.user) {
         containerex.innerHTML += renderPaymentExpired(payment);
+    }
 
     });
 }
