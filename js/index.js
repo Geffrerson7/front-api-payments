@@ -22,15 +22,14 @@ async function getPayments() {
 
 function renderPayment(payment) {
   return `
-    <div class="card col-md-3">
-      <div class="card-body">
-        <h3 class="text-center">${payment.email}</h3>
-        <p>${payment.service}</p>
-        <p>${payment.amount}</p>
-        <p>${payment.paymentDate}</p>
-        
+      <div class="card col-md-3">
+        <img src="${payment.service_logo}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">Servicio: ${payment.service}</h5>
+          <p class="card-text">Fecha de pago: ${payment.paymentDate}</p>
+          <p class="card-text">Monto: s/. ${payment.amount}</p>
+        </div>
       </div>
-    </div>
   `;
 }
 
@@ -56,16 +55,15 @@ async function getPaymentsExpired() {
 function renderPaymentExpired(payment) {
 
   return `
-    <div class="card col-md-3">
-      <div class="card-body">
-        <h3 class="text-center">${payment.user}</h3>
-        <p>${payment.service}</p>
-        <p>${payment.paymentDate}</p>
-        <p>${payment.amount}</p>
-        <p>${payment.penalty_fee_amount}</p>
-        
-      </div>
+  <div class="card col-md-3">
+      <img src="${payment.service_logo}" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">Servicio: ${payment.service}</h5>
+      <p class="card-text">Fecha de pago: ${payment.paymentDate}</p>
+      <p class="card-text">Monto: s/. ${payment.amount}</p>
+      <p class="card-text">Penalidad: s/. ${payment.penalty_fee_amount}</p>
     </div>
+  </div>
   `;
 }
 

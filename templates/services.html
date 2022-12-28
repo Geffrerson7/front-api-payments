@@ -1,22 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.104.2">
-  <title>Payments APP</title>
-
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Añadir nuevo pago</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
   <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
- 
+
   <link href="../css/headers.css" rel="stylesheet">
 </head>
 
 <body>
-
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
       <title></title>
@@ -48,21 +46,24 @@
         d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
     </symbol>
   </svg>
-<!--Header-->
+  <!--Header-->
   <header>
     <div class="px-3 py-2 text-bg-dark">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
           <!--Logo y tiulo de la app-->
-          <a href="./index.html" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+          <a href="./index-admin.html"
+            class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+              <use xlink:href="#bootstrap" />
+            </svg>
             <span class="fs-5">Payments APP</span>
           </a>
-          <!--Nav-bar-->    
+          <!--Nav-bar-->
           <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
             <!--Inicio-->
             <li>
-              <a href="./index.html" class="nav-link text-white">
+              <a href="./index-admin.html" class="nav-link text-secondary">
                 <svg class="bi d-block mx-auto mb-1" width="24" height="24">
                   <use xlink:href="#home" />
                 </svg>
@@ -71,14 +72,22 @@
             </li>
             <!--Añadir nuevo pago-->
             <li>
-              <a href="./newpayment.html" class="nav-link text-secondary">
+              <a href="./newpayment-admin.html" class="nav-link text-secondary">
                 <svg class="bi d-block mx-auto mb-1" width="24" height="24">
                   <use xlink:href="#table" />
                 </svg>
                 Añadir nuevo pago
               </a>
             </li>
-            
+            <!--Servicios-->
+            <li>
+              <a href="./services.html" class="nav-link text-white">
+                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                  <use xlink:href="#grid" />
+                </svg>
+                Servicios
+              </a>
+            </li>
             <!--Nombre de usuario-->
             <li>
               <a href="#" class="nav-link text-white" id="user-email"></a>
@@ -108,21 +117,102 @@
       </div>
     </div>
   </header>
-  <main>
-    <!--Pagos realizados-->
-    <h1>Pagos realizados</h1>
-    <div class="container mt-4">
-      <div id="row-p" class="row"></div>
-    </div>
-    <!--Pagos vencidos-->
-    <h1>Pagos vencidos</h1>
-    <div class="container mt-4">
-      <div id="row-ex" class="row"></div>
-    </div>
-  </main>
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <div class="container">
+    <h5 class="display-6"><strong>Añadir un nuevo servicio</strong></h5>
+    <hr>
+    <form method="post" id="form-create">
+      <section class="section dashboard">
+        <div class="card col-md-5">
+          <h5 class="card-header">Todos los campos son requeridos</h5>
+          <div class="card-body">
+            <div class="container">
+              <div class="row">
+                <div class="mb-3">
+                  <label for="new-name" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="new-name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3">
+                  <label for="new-prefixe" class="form-label">Prefijo</label>
+                  <input type="text" class="form-control" id="new-prefixe">
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3">
+                  <label for="new-URLlogo" class="form-label">URL logo</label>
+                  <input type="text" class="form-control" id="new-URLlogo">
+                </div>
+              </div>
+              <div class="mt-2">
+                <button onclick="submit" class="btn btn-primary">Añadir</button>
+                <a href="./index-admin.html" class="btn btn-danger">Cancelar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
+
+  </div>
+  <hr>
   
-  <script type="module" src="../js/index.js"></script>
+  <div class="container">
+    <h5 class="display-6"><strong>Modificar servicio</strong></h5>
+    <hr>
+    <form method="post" id="form-update">
+      <section class="section dashboard">
+        <div class="card col-md-5">
+          <h5 class="card-header">Todos los campos son requeridos</h5>
+          <div class="card-body">
+            <div class="container">
+              <div class="row">
+                <div class="mb-3">
+                  <label for="service" class="form-label">Service</label>
+                  <select id="service" class="form-select" aria-label="Default select example">
+                    <option>Netflix</option>
+                    <option>Star +</option>
+                    <option>Amazon Video</option>
+                    <option>Paramount +</option>
+                  </select>
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="name">
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3">
+                  <label for="prefixe" class="form-label">Prefijo</label>
+                  <input type="text" class="form-control" id="prefixe">
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-3">
+                  <label for="URLlogo" class="form-label">URL logo</label>
+                  <input type="text" class="form-control" id="URLlogo">
+                </div>
+              </div>
+              <div class="mt-2">
+                <button onclick="submit" class="btn btn-primary">Modificar</button>
+                <a href="./index-admin.html" class="btn btn-danger">Cancelar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="../js/services.js"></script>
 </body>
 
 </html>

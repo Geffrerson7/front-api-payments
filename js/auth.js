@@ -15,10 +15,10 @@ function validateToken(archivoRedirect) {
 }
 
 function updateTokenInterval() {
-    let fourMinutes=1000*60*25 //25 minutes
+    let Minutes=1000*60*25 //25 minutes
     let interval = setInterval(() => {
         updateToken();
-      }, fourMinutes);
+      }, Minutes);
       return () => clearInterval(interval);
 }
 
