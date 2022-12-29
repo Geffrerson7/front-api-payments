@@ -109,6 +109,12 @@ getServices();
 
 
 let avatar = JSON.parse(localStorage.getItem("avatar"));
-foto.innerHTML=`<a href="#" class="nav-link text-white">
-     <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
-    </a>`
+if (avatar==null){
+    foto.innerHTML=`<a href="#" class="nav-link text-white">
+                     <img src="../assets/brand/perfil.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
+                    </a>`
+  }else {
+    foto.innerHTML=`<a href="#" class="nav-link text-white">
+   <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
+  </a>`
+  }
