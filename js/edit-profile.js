@@ -63,7 +63,11 @@ function renderAvatar(avatar) {
 updateTokenInterval();
 getAvatar();
 
-let avatar = JSON.parse(localStorage.getItem("avatar"));
+
+
+var avatar = JSON.parse(localStorage.getItem(user.email));
+
+
 if (avatar==null){
     foto.innerHTML=`<a href="#" class="nav-link text-white">
                      <img src="../assets/brand/perfil.jpg" alt="mdo" width="40" height="40" class="rounded-circle">

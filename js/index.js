@@ -17,8 +17,8 @@ validateAuth("../templates/index.html")
 var DIR_EXPIRED = '';
 var DIR_PAYMENT = '';
 if (user.is_superuser) {
-  DIR_PAYMENT = 'http://127.0.0.1:8000/api/v2/payments-crud/';
-  DIR_EXPIRED = 'http://127.0.0.1:8000/api/v2/expired-crud/';
+  DIR_PAYMENT = BASE_URL+'api/v2/payments-crud/';
+  DIR_EXPIRED = BASE_URL+'api/v2/expired-crud/';
   containerservice.innerHTML = `<a href="./services.html" class="nav-link text-secondary">
                                   <svg class="bi d-block mx-auto mb-1" width="24" height="24">
                                       <use xlink:href="#grid" />
@@ -26,8 +26,8 @@ if (user.is_superuser) {
                                 Servicios
                                 </a>`;
   } else {
-  DIR_PAYMENT = 'http://127.0.0.1:8000/api/v2/payments/';
-  DIR_EXPIRED = 'http://127.0.0.1:8000/api/v2/expired/';
+  DIR_PAYMENT = BASE_URL+'api/v2/payments/';
+  DIR_EXPIRED = BASE_URL+'api/v2/expired/';
   }
 
 
@@ -101,38 +101,15 @@ function renderPaymentExpired(payment) {
 
 
 
-
-// async function getMyAvatar() {
-//   const id = new URLSearchParams(window.location.search).get("id");
-//   if (id==null){
-//     foto.innerHTML=`<a href="#" class="nav-link text-white">
-//                      <img src="../assets/brand/perfil.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
-//                     </a>`
-//   }else {
-//     localStorage.removeItem("avatar")
-//     let authTokens = JSON.parse(localStorage.getItem("authTokens"));
-    
-//     const response = await fetch(BASE_URL+`api/v2/avatar/${id}/`, {
-//       method: 'GET',
-//       mode: "cors",
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Accept': 'application/json',
-//         'Authorization': 'Bearer ' + authTokens?.access
-//       }
-//     });
-//     const data = await response.json();
-//     localStorage.setItem("avatar", JSON.stringify(data));
-//     let avatar = JSON.parse(localStorage.getItem("avatar"));
-//     foto.innerHTML=`<a href="#" class="nav-link text-white">
-//      <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
-//     </a>`
-
-//   };
-// }
+updateTokenInterval();
+getPayments();
+getPaymentsExpired();
 
 
-const avatar = JSON.parse(localStorage.getItem("avatar"));
+
+var avatar = JSON.parse(localStorage.getItem(user.email));
+
+
 
 if (avatar==null){
       foto.innerHTML=`<a href="#" class="nav-link text-white">
@@ -144,61 +121,5 @@ if (avatar==null){
     </a>`
     }
 
-updateTokenInterval();
 
 
-getPayments();
-getPaymentsExpired();
-
-
-// async function chooseMyAvatar(){
-//   const id = new URLSearchParams(window.location.search).get("id");
-//   let authTokens = JSON.parse(localStorage.getItem("authTokens"));
-    
-//     const response = await fetch(BASE_URL+`api/v2/avatar/${id}/`, {
-//       method: 'GET',
-//       mode: "cors",
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Accept': 'application/json',
-//         'Authorization': 'Bearer ' + authTokens?.access
-//       }
-//     });
-//     const data = await response.json();
-// }
-
-// async function updateMyProfile(){
-//   const data = {
-//     title: title.value,
-//     body: body.value,
-//     status: status.value,
-//     author: 1
-// }
-// await fetch(`http://127.0.0.1:8000/api/v2/todo/1/`, {
-//     method: "PUT",
-//     mode: "cors",
-//     headers: {
-//         'Content-Type': 'application/json'
-//       },
-//     body: JSON.stringify(data)
-// }).then((response)=>{
-//     if (response.ok){
-//         Swal.fire(
-//             '¡Actualizado!',
-//             'Los datos se actualizaron correctamente',
-//             'success'
-//           ).then((result) => {
-//             if (result.isConfirmed) {
-//                 returnTodo();
-//             }
-//         }) 
-//     }
-//     else{
-//         Swal.fire({
-//             icon:"error",
-//             title: 'Oops...',
-//             text: "¡Ocurrió un error!"
-//         })           
-//     }
-// })
-// }

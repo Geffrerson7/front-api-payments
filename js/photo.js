@@ -53,16 +53,6 @@ async function chooseMyAvatar(){
 updateTokenInterval();
 chooseMyAvatar();
 
-let avatar = JSON.parse(localStorage.getItem("avatar"));
-if (avatar==null){
-    foto.innerHTML=`<a href="#" class="nav-link text-white">
-                     <img src="../assets/brand/perfil.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
-                    </a>`
-  }else {
-    foto.innerHTML=`<a href="#" class="nav-link text-white">
-   <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
-  </a>`
-  }
 
 async function sendAvatar(){
     const id = new URLSearchParams(window.location.search).get("id");
@@ -93,7 +83,10 @@ async function sendAvatar(){
             'Your avatar has been updated.',
             'success'
           )
-          localStorage.setItem("avatar", JSON.stringify(data));
+         
+        localStorage.setItem(user.email, JSON.stringify(data));
+          
+          
           window.location.replace("./edit-profile.html");
         }else{
             window.location.replace("./edit-profile.html");
@@ -103,3 +96,16 @@ async function sendAvatar(){
 }
 const elegiravatarButton = document.getElementById("avatar");
 elegiravatarButton.addEventListener("click", sendAvatar);
+
+var avatar = JSON.parse(localStorage.getItem(user.email));
+
+
+if (avatar==null){
+    foto.innerHTML=`<a href="#" class="nav-link text-white">
+                     <img src="../assets/brand/perfil.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
+                    </a>`
+  }else {
+    foto.innerHTML=`<a href="#" class="nav-link text-white">
+   <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
+  </a>`
+  }
