@@ -52,7 +52,7 @@ async function getPayments() {
 
 function renderPayment(payment) {
   return `
-      <div class="card col-md-3">
+      <div class="card text-center col-md-2 shadow">
         <img src="${payment.service_logo}" class="card-img-top">
         <div class="card-body">
           <h5 class="card-title">Servicio: ${payment.service}</h5>
@@ -87,7 +87,7 @@ async function getPaymentsExpired() {
 function renderPaymentExpired(payment) {
 
   return `
-  <div class="card col-md-3">
+  <div class="card text-center col-md-2 shadow">
       <img src="${payment.service_logo}" class="card-img-top">
     <div class="card-body">
       <h5 class="card-title">Servicio: ${payment.service}</h5>

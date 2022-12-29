@@ -37,7 +37,7 @@ async function chooseMyAvatar(){
     const data = await response.json();
     
     containeravatar.innerHTML=`
-    <div class="card col-md-3">
+    <div class="card text-center col-md-3 shadow-lg" style="width: auto; margin: auto auto;">
       <img src="${data.image}" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title">${data.name}</h5>
@@ -85,11 +85,9 @@ async function sendAvatar(){
           )
          
         localStorage.setItem(user.email, JSON.stringify(data));
-          
-          
-          window.location.replace("./edit-profile.html");
+        window.location.replace("./edit-profile.html");
         }else{
-            window.location.replace("./edit-profile.html");
+        window.location.replace("./edit-profile.html");
         }
       })
     
