@@ -1,6 +1,7 @@
 import validate from "./validation.js";
 import { updateTokenInterval, BASE_URL, logoutUser, validateAuth } from "./auth.js";
 
+const foto =document.querySelector("#profile-image")
 const containeruser = document.querySelector("#user-email");
 const formTodo = document.querySelector('#form');
 const expirationDate = document.querySelector('#expirationDate');
@@ -9,13 +10,13 @@ const amount = document.querySelector('#amount')
 const serviceOption = document.querySelector(".form-select");
 const containerservice = document.querySelector("#section-service")
 let user = JSON.parse(localStorage.getItem("user"));
-let DIR_PAYMENT="";
-let DIR_SERVICE="";
+let DIR_PAYMENT='';
+let DIR_SERVICE='';
 
 validateAuth("../templates/newpayment.html")
 if (user.is_superuser){
     DIR_PAYMENT='api/v2/payments-crud/';
-    DIR_SERVICE="api/v2/services-crud/";
+    DIR_SERVICE='api/v2/services-crud/';
     containerservice.innerHTML = `<a href="./services.html" class="nav-link text-secondary">
                                   <svg class="bi d-block mx-auto mb-1" width="24" height="24">
                                       <use xlink:href="#grid" />
@@ -24,7 +25,7 @@ if (user.is_superuser){
                                 </a>`;   
 } else {
     DIR_PAYMENT='api/v2/payments/';
-    DIR_SERVICE= "api/v2/services/";  
+    DIR_SERVICE= 'api/v2/services/';  
 }
 
 containeruser.innerHTML=`<p>${user.email}</p>`
@@ -88,6 +89,7 @@ async function getServices() {
 
     const response = await fetch(BASE_URL + DIR_SERVICE, {
         method: 'GET',
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -97,7 +99,7 @@ async function getServices() {
     const data = await response.json();
     data.results.forEach((service) => {
 
-        serviceOption.innerHTML += `<option>${service.name}</option>`
+    serviceOption.innerHTML += `<option>${service.name}</option>`
 
     });
 }
@@ -106,3 +108,7 @@ updateTokenInterval();
 getServices();
 
 
+let avatar = JSON.parse(localStorage.getItem("avatar"));
+foto.innerHTML=`<a href="#" class="nav-link text-white">
+     <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
+    </a>`

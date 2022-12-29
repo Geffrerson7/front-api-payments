@@ -2,12 +2,12 @@ import { updateTokenInterval, logoutUser, BASE_URL } from "./auth.js";
 import validate from "./validation.js";
 
 const containeruser = document.querySelector("#user-email");
+const foto =document.querySelector("#profile-image")
 
 const formNewService = document.querySelector('#form-create');
 const newname = document.querySelector('#new-name');
 const newprefixe = document.querySelector('#new-prefixe');
 const newURLlogo = document.querySelector('#new-URLlogo');
-
 const serviceOption = document.querySelector("#service");
 const formUpdate = document.querySelector('#form-update');
 const name = document.querySelector("#name")
@@ -126,6 +126,7 @@ async function getServices() {
 
     const response = await fetch(BASE_URL + "api/v2/services-crud/", {
         method: 'GET',
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -147,3 +148,8 @@ containeruser.innerHTML = `<p>${user.email}</p>`
 
 const logoutButton = document.getElementById("logout");
 logoutButton.addEventListener("click", logoutUser);
+
+let avatar = JSON.parse(localStorage.getItem("avatar"));
+foto.innerHTML=`<a href="#" class="nav-link text-white">
+     <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
+    </a>`
