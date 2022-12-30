@@ -1,4 +1,4 @@
-import validate from "./validation.js";
+import {validate, validateDecimal} from "./validation.js";
 import { updateTokenInterval, BASE_URL, logoutUser, validateAuth } from "./auth.js";
 
 const foto =document.querySelector("#profile-image")
@@ -39,8 +39,9 @@ formTodo.addEventListener('submit', (event) => {
 });
 
 let formValidation = () => {
-    let validated = validate([expirationDate.value, service.value, amount.value]);
-    if (validated) {
+    let validated = validate([expirationDate.value, service.value]);
+    let validatedNumber=validateDecimal(amount.value)
+    if (validated && validatedNumber) {
     acceptData();
     }
   };

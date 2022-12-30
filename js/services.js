@@ -1,5 +1,5 @@
 import { updateTokenInterval, logoutUser, BASE_URL } from "./auth.js";
-import validate from "./validation.js";
+import {validate, validarURL} from "./validation.js";
 
 const containeruser = document.querySelector("#user-email");
 const foto =document.querySelector("#profile-image")
@@ -23,8 +23,9 @@ formNewService.addEventListener('submit', (event) => {
 
 
 let formValidation = () => {
-    let validated = validate([newname.value, newprefixe.value, newURLlogo.value]);
-    if (validated) {
+    let validated = validate([newname.value, newprefixe.value]);
+    let validatednewURL= validarURL(newURLlogo.value);
+    if (validated && validatednewURL) {
         acceptData();
     }
 };
@@ -76,8 +77,9 @@ formUpdate.addEventListener('submit', (event) => {
 });
 
 let formUpdateValidation = () => {
-    let validated = validate([service.value, name.value, prefixe.value, URLlogo.value]);
-    if (validated) {
+    let validated = validate([service.value, name.value, prefixe.value]);
+    let validatedURL = validarURL(URLlogo.value)
+    if (validated && validatedURL) {
         updateData();
     }
 };
