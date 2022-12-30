@@ -1,5 +1,5 @@
-import { BASE_URL, updateTokenInterval, logoutUser, validateAuth } from "./auth.js";
-
+import { BASE_URL, updateTokenInterval, logoutUser, validateAuth} from "./auth.js";
+validateAuth();
 const containeruser = document.querySelector("#user-email");
 const container = document.querySelector("#row-p");
 const containerex = document.querySelector("#row-ex");
@@ -11,8 +11,6 @@ containeruser.innerHTML = `<p>${user.email}</p>`
 //Opcion de logout
 const logoutButton = document.getElementById("logout");
 logoutButton.addEventListener("click", logoutUser);
-
-validateAuth("../templates/index.html")
 
 var DIR_EXPIRED = '';
 var DIR_PAYMENT = '';
@@ -99,14 +97,6 @@ function renderPaymentExpired(payment) {
   `;
 }
 
-
-
-updateTokenInterval();
-getPayments();
-getPaymentsExpired();
-
-
-
 var avatar = JSON.parse(localStorage.getItem(user.email));
 
 
@@ -121,5 +111,8 @@ if (avatar==null){
     </a>`
     }
 
-
+updateTokenInterval();
+getPayments();
+getPaymentsExpired();
+    
 

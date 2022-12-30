@@ -1,6 +1,7 @@
-import {validate, validateDecimal} from "./validation.js";
-import { updateTokenInterval, BASE_URL, logoutUser, validateAuth } from "./auth.js";
-
+import validate from "./validation.js";
+import { validateDecimal } from "./validation2.js";
+import { updateTokenInterval, BASE_URL, logoutUser, validateAuth} from "./auth.js";
+validateAuth();
 const foto =document.querySelector("#profile-image")
 const containeruser = document.querySelector("#user-email");
 const formTodo = document.querySelector('#form');
@@ -13,7 +14,7 @@ let user = JSON.parse(localStorage.getItem("user"));
 let DIR_PAYMENT='';
 let DIR_SERVICE='';
 
-validateAuth("../templates/newpayment.html")
+
 if (user.is_superuser){
     DIR_PAYMENT='api/v2/payments-crud/';
     DIR_SERVICE='api/v2/services-crud/';
@@ -105,13 +106,7 @@ async function getServices() {
     });
 }
 
-updateTokenInterval();
-getServices();
-
-
 var avatar = JSON.parse(localStorage.getItem(user.email));
-
-
 if (avatar==null){
     foto.innerHTML=`<a href="#" class="nav-link text-white">
                      <img src="../assets/brand/perfil.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
@@ -121,3 +116,6 @@ if (avatar==null){
    <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
   </a>`
   }
+
+  updateTokenInterval();
+  getServices();

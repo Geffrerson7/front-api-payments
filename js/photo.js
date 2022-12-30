@@ -1,4 +1,5 @@
-import { BASE_URL, updateTokenInterval, logoutUser} from "./auth.js";
+import { BASE_URL, updateTokenInterval, logoutUser, validateAuth} from "./auth.js";
+validateAuth();
 const containerservice = document.querySelector("#section-service")
 const containeravatar = document.querySelector("#row-a");
 const containeruser = document.querySelector("#user-email");
@@ -46,12 +47,6 @@ async function chooseMyAvatar(){
     </div>
 `;
 }
-
-
-
-updateTokenInterval();
-chooseMyAvatar();
-
 
 async function sendAvatar(){
     const id = new URLSearchParams(window.location.search).get("id");
@@ -106,3 +101,7 @@ if (avatar==null){
    <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
   </a>`
   }
+
+updateTokenInterval();
+chooseMyAvatar();
+  

@@ -1,5 +1,5 @@
-import { BASE_URL, updateTokenInterval, logoutUser, validateAuth } from "./auth.js";
-
+import { BASE_URL, updateTokenInterval, logoutUser, validateAuth} from "./auth.js";
+validateAuth();
 const containeravatar = document.querySelector("#row-a");
 const containeruser = document.querySelector("#user-email");
 const containerservice = document.querySelector("#section-service")
@@ -14,7 +14,7 @@ logoutButton.addEventListener("click", logoutUser);
 
 
 
-validateAuth("../templates/edit-profile.html")
+
 //opcion servicios
 if (user.is_superuser){
     
@@ -58,13 +58,6 @@ function renderAvatar(avatar) {
     `;
 }
 
-
-
-updateTokenInterval();
-getAvatar();
-
-
-
 var avatar = JSON.parse(localStorage.getItem(user.email));
 
 
@@ -77,3 +70,6 @@ if (avatar==null){
    <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
   </a>`
   }
+  
+updateTokenInterval();
+getAvatar();

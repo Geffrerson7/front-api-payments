@@ -1,9 +1,9 @@
 var BASE_URL="http://127.0.0.1:8000/"
 
-function validateAuth(archivoRedirect) {
+function validateAuth() {
   let token = localStorage.getItem("authTokens");
   if (!token) {
-    window.location.href = "../templates/login.html";
+    window.location.href = "./login.html";
   }
 }
 

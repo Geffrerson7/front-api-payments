@@ -1,6 +1,7 @@
-import { updateTokenInterval, logoutUser, BASE_URL } from "./auth.js";
-import {validate, validarURL} from "./validation.js";
-
+import { updateTokenInterval, logoutUser, BASE_URL, validateAuth } from "./auth.js";
+import validate from "./validation.js";
+import { validarURL} from "./validation2.js";
+validateAuth();
 const containeruser = document.querySelector("#user-email");
 const foto =document.querySelector("#profile-image")
 
@@ -14,7 +15,7 @@ const name = document.querySelector("#name")
 const prefixe = document.querySelector("#prefixe")
 const URLlogo = document.querySelector("#URLlogo")
 
-updateTokenInterval();
+
 formNewService.addEventListener('submit', (event) => {
     event.preventDefault();
     formValidation();
@@ -143,7 +144,7 @@ async function getServices() {
     });
 }
 
-getServices();
+
 
 let user = JSON.parse(localStorage.getItem("user"));
 containeruser.innerHTML = `<p>${user.email}</p>`
@@ -163,3 +164,6 @@ if (avatar==null){
    <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
   </a>`
   }
+
+updateTokenInterval();
+getServices();

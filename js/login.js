@@ -11,6 +11,7 @@ let loginUser = async (event) => {
     if (validated) {
         let response = await fetch(BASE_URL + "users/login/", {
             method: "POST",
+            mode: "cors",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -26,7 +27,7 @@ let loginUser = async (event) => {
             localStorage.setItem("authTokens", JSON.stringify(tokens));
             localStorage.setItem("user", JSON.stringify(user));
             
-            window.location.replace("../templates/index.html");
+            window.location.replace("./index.html");
             
             
         } else {
