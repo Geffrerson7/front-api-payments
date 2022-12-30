@@ -39,7 +39,7 @@ formTodo.addEventListener('submit', (event) => {
 });
 
 let formValidation = () => {
-    let validated = validate([expirationDate.value, service.value]);
+    let validated = validate([expirationDate.value, service.value,amount.value]);
     let validatedNumber=validateDecimal(amount.value)
     if (validated && validatedNumber) {
     acceptData();
