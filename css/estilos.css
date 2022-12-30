@@ -1,0 +1,26 @@
+h1,h6{
+    text-align:center
+}
+
+#payment{
+    background: linear-gradient(180deg,#11998E,#4ef68e);
+}
+#inferior-header{
+    background: linear-gradient(-90deg,#2dbee2,#006ce0);
+}
+
+#expired{
+    background: linear-gradient(180deg,#BF019F,#F28A57);
+}
+#avatar-card{
+    background: linear-gradient(180deg,#3c95c8,#4dfcfc);
+}
+#avatar-list{
+    background: linear-gradient(180deg,#3c95c8,#4dfcfc);
+}
+.btn-danger{
+    background: linear-gradient(180deg,#d02c2c,#bd6969);
+}
+.btn-success{
+    background: linear-gradient(180deg,#11998E,#4ef68e);
+}

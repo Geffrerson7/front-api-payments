@@ -37,12 +37,11 @@ async function chooseMyAvatar(){
     const data = await response.json();
     
     containeravatar.innerHTML=`
-    <div class="card text-center col-md-3 shadow-lg" style="width: auto; margin: auto auto;">
+    <div class="card text-center col-md-3 shadow-lg" style="width: auto; margin: auto auto;" id="avatar-card">
       <img src="${data.image}" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title">${data.name}</h5>
-        
-        
+              
       </div>
     </div>
 `;

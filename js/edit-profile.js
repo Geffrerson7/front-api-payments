@@ -48,7 +48,7 @@ async function getAvatar() {
   
 function renderAvatar(avatar) {
     return `
-        <div class="card text-center col-md-3 shadow">
+        <div class="card text-center col-md-3 shadow" id="avatar-list">
           <img src="${avatar.image}" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">${avatar.name}</h5>
