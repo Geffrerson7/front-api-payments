@@ -24,3 +24,7 @@ h1,h6{
 .btn-success{
     background: linear-gradient(180deg,#11998E,#4ef68e);
 }
+
+#newpayment{
+    background: linear-gradient(180deg,#09bfb0,#00ff62);
+}
