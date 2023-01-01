@@ -77,7 +77,7 @@ async function sendAvatar(){
             'Your avatar has been updated.',
             'success'
           )
-         
+        
         localStorage.setItem(user.email, JSON.stringify(data));
         window.location.replace("./edit-profile.html");
         }else{
