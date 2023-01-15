@@ -72,7 +72,8 @@ async function acceptData(){
                 'success'
               ).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.replace("../templates/index.html");
+                    location.reload();
+                    //window.location.replace("./index.html");
                 }
             }) 
         }
@@ -106,16 +107,35 @@ async function getServices() {
     });
 }
 
-var avatar = JSON.parse(localStorage.getItem(user.email));
-if (avatar==null){
-    foto.innerHTML=`<a href="#" class="nav-link text-white">
-                     <img src="../assets/brand/perfil.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
-                    </a>`
-  }else {
-    foto.innerHTML=`<a href="#" class="nav-link text-white">
-   <img src="${avatar.image}" alt="mdo" width="40" height="40" class="rounded-circle">
-  </a>`
-  }
+async function getPhoto(){
 
-  updateTokenInterval();
-  getServices();
+    let authTokens = JSON.parse(localStorage.getItem("authTokens"));
+
+    const response = await fetch(BASE_URL + "api/v2/profile/", {
+        method: 'GET',
+        mode: "cors",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer ' + authTokens?.access
+        } 
+    });
+    const data=await response.json();
+    const logo =data.results
+    
+    if(logo.length >0){
+            
+            foto.innerHTML=`<a href="#" class="nav-link text-white">
+                        <img src="${logo[0].photo}" alt="mdo" width="40" height="40" class="rounded-circle">
+                    </a>`
+    }else{
+            
+            foto.innerHTML=`<a href="#" class="nav-link text-white">
+                                 <img src="../assets/brand/perfil.jpg" alt="mdo" width="40" height="40" class="rounded-circle">
+                                </a>`
+    }
+}  
+getPhoto();
+
+updateTokenInterval();
+getServices();

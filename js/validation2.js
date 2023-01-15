@@ -28,4 +28,18 @@ function validarURL(miurl) {
  
   }
 }
-export { validarURL, validateDecimal }; 
+
+function validacionImagen(params) {
+  let valid = true;
+  params.forEach((value, key) => {
+    if (value === "" || value==="undefined") {
+      valid = false;
+      return valid;
+    }
+  
+  });
+  return valid;
+
+}
+
+export { validarURL, validateDecimal, validacionImagen }; 
